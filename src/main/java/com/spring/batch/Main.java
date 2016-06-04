@@ -28,7 +28,7 @@ public class Main {
 
     public static void main(String[] args) {
         SqlServerPagingQueryProvider provider = new SqlServerPagingQueryProvider();
-        provider.setFromClause("(select distinct user_id from tb_order_info where cancel_reason_1 = '未取消' and firm_time >'2015-01-01' and firm_time <'2015-02-01') AS id1");
+        provider.setFromClause("(select distinct user_id from test where  add_time >'2015-01-01' and add_time <'2015-02-01') AS id1");
         provider.setSelectClause("user_id");
         Map<String, Order> sortKeys = new HashMap<String, Order>();
         sortKeys.put("user_id", Order.ASCENDING);
@@ -48,7 +48,7 @@ public class Main {
 
 
         TaskExecutorRepeatTemplate repeatTemplate = new TaskExecutorRepeatTemplate();
-        repeatTemplate.setTaskExecutor(new SimpleAsyncTaskExecutor("user-order"));
+        repeatTemplate.setTaskExecutor(new SimpleAsyncTaskExecutor("user"));
         repeatTemplate.setThrottleLimit(3);
 
         reader.open(new ExecutionContext());
